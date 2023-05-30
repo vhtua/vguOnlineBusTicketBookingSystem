@@ -1,0 +1,5 @@
+{
+    "require": {
+        "libern/qr-code-reader": "^1.0"
+    }
+}
