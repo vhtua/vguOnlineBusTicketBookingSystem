@@ -27,6 +27,14 @@
         }
     }
 
+    function student_get_ticket_data($conn) {
+        $stmt = $conn->prepare("SELECT * FROM ticket ORDER BY time DESC LIMIT 20", [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+        $stmt->execute();
+        $ticket = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        
+        return $ticket;      
+    }
+
     function insert_new_booking($student_id, $ticket_id, $bus_id, $conn) {
         $qrcode = "id=" . $student_id .  "@t" . $ticket_id . "@b" . $bus_id;
 

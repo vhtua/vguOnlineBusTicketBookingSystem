@@ -448,7 +448,7 @@
                             
                             <div class="row">
                                 <div class="col">
-                                    <div style="width:500px;" id="reader"></div>
+                                    <div style="width:300px;" id="reader"></div>
                                 </div>
                                 <script src="../../controller/driver_QRcontroller.js"></script>
 

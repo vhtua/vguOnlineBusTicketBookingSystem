@@ -550,10 +550,18 @@
                 </div>
 
 
-                <?php } else if (isset($_GET['menu']) && $_GET['menu'] === 'bookaticket' && !isset($_GET['availability'])) { ?>
+                <?php } else if (isset($_GET['menu']) && $_GET['menu'] === 'bookaticket' && !isset($_GET['availability'])) { 
+                    
+                    $db = new DBConnect();
+                    $conn = $db->connect();
+                
+                    $ticket = student_get_ticket_data($conn);
+
+                ?>
                     <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
+
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
                         <h3 class="text-themecolor">Book a ticket</h3>
@@ -573,10 +581,10 @@
               <!-- Row -->
               <div class="row">
                 <!-- Column -->
-
+                
                 <!-- Column -->
                 <!-- Column -->
-                <div class="col-lg-8 col-xlg-9 col-md-7">
+                <div class="col-lg-5">
                     <div class="card">
                         <!-- Tab panes -->
                         <div class="card-body">
@@ -597,8 +605,8 @@
                                     <label class="col-sm-12">Select Route</label>
                                     <div class="col-sm-12">
                                         <select class="form-control form-control-line" name="select_route">
-                                            <option>VGU Campus → Turtle Lake</option>
-                                            <option>Turtle Lake → VGU Campus</option>
+                                            <option>Turtle Lake - VGU Campus 06:45 am</option>
+                                            <option>VGU Campus - Turtle Lake 04:30 pm</option>
                                         </select>
                                     </div>
                                 </div>
@@ -623,6 +631,66 @@
                             </form>
                         </div>
                     </div>
+
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-7">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex no-block">
+                                    <div>
+                                        <h5 class="card-title m-b-0">Ticket data list</h5>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <ul class="list-inline text-center font-12">
+                                            <li><i class="fa fa-circle text-info"></i> Show at most 20 tickets</li>
+                                            <li><i class="fa fa-circle text-success"></i> Sorted by date (newest > oldest)</li> 
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Ticket ID</th>
+                                                <th>Route</th>
+                                                <th>Date</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <form method="POST">
+                                        <?php 
+                                        $ticket_index = 1;
+                                        foreach ($ticket as $each_ticket) { ?>
+                                            
+                                            <tr>
+                                                    <td> <?php echo $ticket_index; ?> </div> </td>
+                                                    <td> <?php echo $each_ticket['ticket_id']; ?> </td>
+                                                    <td> <?php echo $each_ticket['route']; ?> </td>
+                                                    <td> <?php echo $each_ticket['time']; ?> </td>
+                                                    <td> <?php echo number_format($each_ticket['price'], 2, ',', ' ') . " VND"; ?> </td>
+                                            </tr>
+                                            
+                                        <?php
+                                        $ticket_index++; 
+                                        } ?>
+
+                                        </form>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
                 <!-- Column -->
                 <?php } else if (isset($_GET['menu']) && $_GET['menu'] === 'bookaticket' && isset($_GET['availability']) && $_GET['availability'] === 'check') { ?>
