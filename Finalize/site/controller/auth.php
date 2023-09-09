@@ -43,6 +43,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['user_last_name']     = $user_last_name;
 					$_SESSION['user_email']         = $user_email;
                     $_SESSION['user_password']      = $user_password;
+                    $_SESSION['user_type']          = "driver";
 
                     // retrieve data for the notification
                     // $_SESSION['notification'] = retrieve_notification($conn);
@@ -85,6 +86,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['user_last_name']     = $user_last_name;
 					$_SESSION['user_email']         = $user_email;
                     $_SESSION['user_password']      = $user_password;
+                    $_SESSION['user_type']          = "admin";
 
                     header("Location: ../view/userdashboard/adminIndex.php?menu=mainpage");
 
@@ -117,6 +119,7 @@ if (isset($_POST['login'])) {
             $user_password      = $user['password'];
             $user_intake        = $user['intake'];
             $user_phone_number  = $user['phone_number'];
+            
 
             if ($id === $user_id) {
                 // authentication for the user identification
@@ -129,6 +132,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['user_intake']        = $user_intake;
                     $_SESSION['user_phone_number']  = $user_phone_number;
                     $_SESSION['user_password']      = $user_password;
+                    $_SESSION['user_type']          = "student";
 
                     $private_secret_key = "f12345";                         // key used for encode 
                     $_SESSION['private_secret_key'] = $private_secret_key;

@@ -1,6 +1,23 @@
 <?php
 	// $hashed_pass = password_hash('987654321', PASSWORD_DEFAULT);
 	// echo $hashed_pass;
+	ini_set('session.gc_maxlifetime', 600);
+	session_start();
+
+	// Check if the user is already logged in
+	if(isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_type'])){
+
+		// Redirect to the home page
+		if ($_SESSION['user_type'] === "student") {
+			header("Location: userdashboard/index.php");
+		} else if ($_SESSION['user_type'] === "admin") {
+			header("Location: userdashboard/adminIndex.php");
+		} else if ($_SESSION['user_type'] === "driver") {
+			header("Location: userdashboard/driverIndex.php");
+		}
+
+		exit; // Make sure to exit the script after the redirect
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">

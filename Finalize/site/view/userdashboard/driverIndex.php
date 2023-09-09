@@ -4,7 +4,18 @@
     include_once '../../model/notification_query.php';
     include_once '../../model/DBConnect.php';
 
-    if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) { 
+    if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {  
+        // Check if the session has started more than 10 minutes ago
+        if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 600)) {
+            // Expire the session
+            session_unset();
+            session_destroy();
+            header("Location: ../login.php"); // Redirect to the login page after session expiration
+            exit;
+        }
+
+        // Update the last activity timestamp
+        $_SESSION['last_activity'] = time();
 ?>
 
 <!DOCTYPE html>
@@ -631,6 +642,7 @@
 
 <?php 
 } else {
-    echo("<script>location.href = 'driverIndex.php';</script>");
+    // echo("<script>location.href = 'driverIndex.php';</script>");
+    header("Location: ../../controller/logout.php");
 }
  ?>
