@@ -9,11 +9,11 @@
 
 		// Redirect to the home page
 		if ($_SESSION['user_type'] === "student") {
-			header("Location: userdashboard/index.php");
+			header("Location: userdashboard/index.php?menu=mainpage");
 		} else if ($_SESSION['user_type'] === "admin") {
-			header("Location: userdashboard/adminIndex.php");
+			header("Location: userdashboard/adminIndex.php?menu=mainpage");
 		} else if ($_SESSION['user_type'] === "driver") {
-			header("Location: userdashboard/driverIndex.php");
+			header("Location: userdashboard/driverIndex.php?menu=mainpage");
 		}
 
 		exit; // Make sure to exit the script after the redirect
