@@ -654,7 +654,6 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Ticket ID</th>
                                                 <th>Route</th>
                                                 <th>Date</th>
                                                 <th>Price</th>
@@ -669,7 +668,6 @@
                                             
                                             <tr>
                                                     <td> <?php echo $ticket_index; ?> </div> </td>
-                                                    <td> <?php echo $each_ticket['ticket_id']; ?> </td>
                                                     <td> <?php echo $each_ticket['route']; ?> </td>
                                                     <td> <?php echo $each_ticket['time']; ?> </td>
                                                     <td> <?php echo number_format($each_ticket['price'], 2, ',', ' ') . " VND"; ?> </td>
